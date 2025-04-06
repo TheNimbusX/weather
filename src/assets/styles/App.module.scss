@@ -1,0 +1,38 @@
+@use "sass:math";
+
+@function rem($screen) {
+  @return math.div(100vw, $screen) * 10;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 6px;
+
+  @media (min-width: 1200px) {
+    font-size: rem(1920);
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.intro {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+
+  &__wrapper {
+    width: 60vw;
+    height: fit-content;
+    padding: 10vh 15px;
+
+    @media screen and (max-width: 1300px) {
+      width: 900px;
+    }
+  }
+}

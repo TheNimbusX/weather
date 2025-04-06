@@ -1,0 +1,237 @@
+// === Layout Containers ===
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+
+  @media (max-width: 768px) {
+    row-gap: 1.5rem;
+  }
+}
+.weatherMain {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+// === Main Weather Card ===
+.weatherCard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+}
+
+// Left side: City name and description
+.weatherHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 2rem;
+  color: #fff;
+
+  h2 {
+    font-size: 4.5rem;
+    font-weight: 600;
+
+    @media (max-width: 768px) {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+// Weather primary info
+.weatherPrimary {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  .weatherIcon {
+    width: 80px;
+    height: 80px;
+
+    @media (max-width: 768px) {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  .temperature {
+    font-size: 6rem;
+    font-weight: bold;
+
+    @media (max-width: 768px) {
+      font-size: 3rem;
+    }
+  }
+
+  .description {
+    font-size: 2.2rem;
+    text-transform: capitalize;
+
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+// Right: Extra details (humidity, wind etc.)
+.weatherDetails {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    align-items: center;
+  }
+
+  .detailItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2.2rem;
+
+    @media (max-width: 768px) {
+      font-size: 1.6rem;
+    }
+
+    .detailIcon {
+      flex-shrink: 0;
+    }
+  }
+}
+
+// === Forecast Section ===
+.forecastSection {
+  margin-top: 3rem;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: 2rem;
+  color: #fff;
+
+  .forecastTitle {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+}
+
+// Forecast Grid
+.forecastGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 2rem;
+}
+
+// Forecast Card
+.forecastCard {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .forecastIcon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .forecastTime {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+
+  .forecastTemp {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+  }
+
+  .forecastDesc {
+    font-size: 1.4rem;
+    color: #d0d0d0;
+    text-transform: capitalize;
+  }
+}
+
+// === Back Button ===
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 2.4rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: rgb(123, 172, 209);
+  border: none;
+  border-radius: 2rem;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+    padding: 1rem 2rem;
+  }
+
+  &:hover {
+    box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.2);
+  }
+}
+
+// === Loading and Error States ===
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+.errorContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.errorMessage {
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  color: #ff6b6b;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
