@@ -1,8 +1,8 @@
 {
-  "name": "weather",
+  "name": "",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://thenimbusx.github.io/weather/",
+  "homepage": "https://thenimbusx.github.io/",
   "type": "module",
   "scripts": {
     "start": "vite",
