@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   resetSearch,
@@ -18,14 +18,18 @@ const HomePage = () => {
     (state) => state.weather
   );
 
+  const [searchError, setSearchError] = useState(""); // состояние для ошибки поиска
+
   useEffect(() => {
     dispatch(initializeStorageData());
   }, [dispatch]);
 
   const handleSearch = (query) => {
     if (query.trim()) {
+      setSearchError(""); // сбрасываем ошибку при вводе
       dispatch(fetchCityWeather(query));
     } else {
+      setSearchError("Пожалуйста, введите корректное название города."); // устанавливаем ошибку, если ввод пустой
       dispatch(resetSearch());
     }
   };
@@ -57,11 +61,14 @@ const HomePage = () => {
         </div>
       )}
 
-      {searchResults.length > 0 && renderSection("Результаты поиска", searchResults)}
+      {/* Оповещение о некорректном вводе */}
+      {searchError && (
+        <div className={styles.errorMessage} role="alert">
+          {searchError}
+        </div>
+      )}
 
-      {mainCities.length > 0 && renderSection("Города на главной", mainCities, true)}
-
-      {favorites.length > 0 && renderSection("Избранные города", favorites)}
+      {mainCities.length > 0 && renderSection("", mainCities, true)}
     </div>
   );
 };

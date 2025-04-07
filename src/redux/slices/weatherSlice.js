@@ -50,7 +50,7 @@ function saveToStorage(key, value) {
 const weatherApi = {
   fetchByCity: async (city) => {
     const url = `${BASE_WEATHER_API_URL}/weather?q=${city}&units=metric&appid=${WEATHER_API_KEY}&lang=ru`;
-    return fetchWeatherData(url, "City not found");
+    return fetchWeatherData(url, "Город не найден");
   },
 
   fetchForecastById: async (id) => {

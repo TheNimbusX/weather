@@ -1,15 +1,27 @@
 import { useState, memo } from "react";
 import { Search } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCityWeather, addMainCity } from "../redux/slices/weatherSlice"; // Импортируем необходимые экшены
 import styles from "../assets/styles/components/SearchBar.module.scss";
 
 const SearchInput = ({ onSearch }) => {
+  const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
+  const { mainCities } = useSelector((state) => state.weather); // Получаем список городов на главной странице
 
-  const handleSearchSubmit = (e) => {
+  const handleSearchSubmit = async (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      onSearch(searchQuery.trim());
-      setSearchQuery("");
+      try {
+        // Запрашиваем погоду для города
+        const response = await dispatch(fetchCityWeather(searchQuery.trim()));
+        const city = response.payload;
+
+        dispatch(addMainCity(city));
+        setSearchQuery("");
+      } catch (error) {
+        console.error("Error fetching city data:", error);
+      }
     }
   };
 

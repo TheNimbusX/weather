@@ -28,10 +28,13 @@ const WeatherCard = ({ city, isMainSection = false }) => {
     e.preventDefault();
     e.stopPropagation();
 
-    const action = isOnMain ? removeMainCity(city.id) : addMainCity(city);
-    dispatch(action);
+    if (isOnMain) {
+      dispatch(removeMainCity(city.id));
+      if (isFavorite) dispatch(removeFavorite(city.id));
+    } else {
+      dispatch(addMainCity(city));
+    }
   };
-
   const formatDate = (timestamp) => {
     return new Date(timestamp * 1000).toLocaleDateString("ru-RU");
   };
